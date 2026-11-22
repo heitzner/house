@@ -1,0 +1,35 @@
+general {
+        colors = true
+        interval = 5
+        color_good = "#1A7F37"
+        color_bad = "#CF222E"
+        color_degraded = "#9A6700"
+}
+
+order += "memory"
+order += "battery all"
+order += "tztime local"
+
+memory {
+        format = "%used"
+        threshold_degraded = "1G"
+        format_degraded = "%available"
+}
+
+battery all {
+        format = "%percentage"
+        format_down = "No battery"
+        status_chr = "C"
+        status_bat = ""
+        status_unk = "?"
+        status_full = "Full"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 15
+        threshold_type = percentage
+        integer_battery_capacity = true
+        last_full_capacity = true
+}
+
+tztime local {
+        format = "%A, %d, %-I:%M"
+}

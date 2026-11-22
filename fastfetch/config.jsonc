@@ -1,0 +1,111 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "none"
+  },
+  "display": {
+    "separator": " "
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "System",
+      "outputColor": "blue"
+    },
+    {
+      "type": "os",
+      "key": " ├─ Distro",
+      "keyColor": "blue"
+    },
+    {
+      "type": "kernel",
+      "key": " ├─ Kernel",
+      "keyColor": "blue"
+    },
+    {
+      "type": "command",
+      "key": " ├─ Status",
+      "keyColor": "blue",
+      "text": "bash ~/.config/fastfetch/age.sh"
+    },
+    {
+      "type": "uptime",
+      "key": " ├─ Uptime",
+      "keyColor": "blue"
+    },
+    {
+      "type": "packages",
+      "key": " └─ Packages",
+      "keyColor": "blue"
+    },
+    {
+      "type": "custom",
+      "format": ""
+    },
+    {
+      "type": "custom",
+      "format": "Desktop",
+      "outputColor": "cyan"
+    },
+    {
+      "type": "wm",
+      "key": " ├─ WM",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "terminal",
+      "key": " ├─ Terminal",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "shell",
+      "key": " ├─ Shell",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "terminalfont",
+      "key": " └─ Font",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "custom",
+      "format": ""
+    },
+    {
+      "type": "custom",
+      "format": "Hardware",
+      "outputColor": "green"
+    },
+    {
+      "type": "host",
+      "key": " ├─ Model",
+      "keyColor": "green"
+    },
+    {
+      "type": "cpu",
+      "key": " ├─ CPU",
+      "keyColor": "green"
+    },
+    {
+      "type": "gpu",
+      "key": " ├─ GPU",
+      "keyColor": "green"
+    },
+    {
+      "type": "memory",
+      "key": " ├─ Memory",
+      "keyColor": "green"
+    },
+    {
+      "type": "disk",
+      "key": " ├─ Disk (/)",
+      "keyColor": "green",
+      "folders": "/"
+    },
+    {
+      "type": "battery",
+      "key": " └─ Battery",
+      "keyColor": "green"
+    }
+  ]
+}

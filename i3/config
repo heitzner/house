@@ -1,0 +1,221 @@
+# * i3wm configuration file
+
+# {global_defaults}
+
+font pango:Arial 11
+set $mod Mod4
+floating_modifier $mod
+tiling_drag modifier titlebar
+gaps inner 12
+gaps outer 8
+
+set $left j
+set $down k
+set $up l
+set $right semicolon
+
+set $screen_internal eDP-1
+set $screen_external HDMI-1
+
+set $ws1  "1:I"
+set $ws2  "2:II"
+set $ws3  "3:III"
+set $ws4  "4:IV"
+set $ws5  "5:V"
+set $ws6  "6:VI"
+set $ws7  "7:VII"
+set $ws8  "8:VIII"
+set $ws9  "9:IX"
+set $ws10 "10:X"
+
+default_border pixel 3
+default_floating_border pixel 3
+
+# {autostart}
+
+exec --no-startup-id flameshot
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh
+exec --no-startup-id picom -b
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+exec --no-startup-id nm-applet
+exec --no-startup-id GDK_BACKEND=x11 snixembed --fork
+exec --no-startup-id cachy-update --tray
+exec --no-startup-id copyq
+exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id dunst
+exec --no-startup-id nm-applet
+exec_always --no-startup-id autorandr --change
+
+# {application_system_keybinds}
+
+bindsym $mod+p exec --no-startup-id xcolor -s clipboard
+bindsym $mod+Shift+x exec --no-startup-id ~/.config/i3/lock.sh
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
+bindsym Print exec --no-startup-id flameshot full -c
+bindsym $mod+Shift+v exec --no-startup-id copyq toggle
+bindsym $mod+Return exec alacritty
+bindsym $mod+Shift+q kill
+bindsym control+space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -p 'Launch Program:' -fn 'Poppins:size=12' -nb '#000000' -nf '#ffffff' -sb '#ffffff' -sf '#000000'" --term="alacritty"
+bindsym $mod+Shift+d exec --no-startup-id dmenu_run -i
+bindsym $mod+Shift+p exec --no-startup-id autorandr --change
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/powermenu.sh
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute        exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute     exec --no-startup-id wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+# {general_navigation}
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+workspace "1:I"    output $screen_internal
+workspace "2:II"   output $screen_internal
+workspace "3:III"  output $screen_internal
+workspace "4:IV"   output $screen_internal
+workspace "5:V"    output $screen_internal
+workspace "6:VI"   output $screen_internal
+workspace "7:VII"  output $screen_internal
+workspace "8:VIII" output $screen_internal
+# Fallback to internal display if HDMI is disconnected
+workspace "9:IX"   output $screen_external $screen_internal
+workspace "10:X"   output $screen_external $screen_internal
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+mode "resize" {
+        bindsym $left  resize shrink width 10 px or 10 ppt
+        bindsym $down  resize grow height 10 px or 10 ppt
+        bindsym $up    resize shrink height 10 px or 10 ppt
+        bindsym $right resize grow width 10 px or 10 ppt
+
+        bindsym Left   resize shrink width 10 px or 10 ppt
+        bindsym Down   resize grow height 10 px or 10 ppt
+        bindsym Up     resize shrink height 10 px or 10 ppt
+        bindsym Right  resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# {window_rules}
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+for_window [title="(?:Open|Save)? File"] floating enable
+for_window [title="File Operation Progress"] floating enable
+for_window [title="Confirm to replace files"] floating enable
+for_window [class="xdg-desktop-portal-.*"] floating enable
+
+for_window [class="(?i)pavucontrol"] floating enable
+for_window [class="(?i)arandr"] floating enable
+for_window [class="(?i)lxappearance"] floating enable
+for_window [class="(?i)gnome-calculator|calculator|galculator|kcalc"] floating enable
+for_window [class="(?i)file-roller|ark"] floating enable
+for_window [class="(?i)zenity"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
+for_window [class="(?i)gparted"] floating enable
+
+for_window [title="(?i)Picture-in-Picture"] floating enable, sticky enable
+for_window [class="(?i)feh|imv|sxiv"] floating enable
+for_window [class="(?i)copyq"] floating enable, resize set 550 400, move position center
+for_window [floating] move position center
+for_window [class="^.*"] border pixel 3
+
+# {border_colors}
+
+client.focused #ffffff #ffffff #ffffff #ffffff #ffffff
+client.focused_inactive #808080 #808080 #808080 #808080 #808080
+client.unfocused #808080 #808080 #808080 #808080 #808080
+client.urgent #2f343a #900000 #ffffff #900000 #900000 
+client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c 
+client.background #ffffff
+
+# {status_bar}
+
+bar {
+ font pango:Poppins Bold 12
+ status_command i3status
+ position top
+ workspace_buttons yes
+ strip_workspace_numbers yes
+
+colors {
+  background #000000
+  statusline #FFFFFF
+  separator  #4c7899
+
+  #                  border   bg       text
+  focused_workspace  #4c7899  #ffffff  #000000
+  active_workspace   #000000  #000000  #888888
+  inactive_workspace #000000  #000000  #888888
+  urgent_workspace   #900000  #900000  #ffffff
+ }
+    }

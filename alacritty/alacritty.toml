@@ -1,0 +1,67 @@
+[window]
+padding = { x = 8, y = 8 }
+dynamic_padding = true
+decorations = "None"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+size = 9.0
+
+[font.normal]
+family = "JetBrains Mono NL"
+style = "Bold"
+
+[font.bold]
+family = "JetBrains Mono NL"
+style = "Bold"
+
+[font.italic]
+family = "JetBrains Mono NL"
+style = "Italic"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 500
+
+[selection]
+save_to_clipboard = true
+
+[colors.primary]
+background = "#000000"
+foreground = "#e0e0e0"
+
+[colors.cursor]
+text = "#000000"
+cursor = "#ffffff"
+
+[colors.selection]
+text = "CellForeground"
+background = "#4c7899"
+
+[colors.normal]
+black   = "#1a1a1a"
+red     = "#ff5555"
+green   = "#50fa7b"
+yellow  = "#f1fa8c"
+blue    = "#61afef"
+magenta = "#bd93f9"
+cyan    = "#56b6c2"
+white   = "#abb2bf"
+
+[colors.bright]
+black   = "#5c6370"
+red     = "#ff6e6e"
+green   = "#69ff94"
+yellow  = "#ffffa5"
+blue    = "#73bbf5"
+magenta = "#d6acff"
+cyan    = "#6ad0dc"
+white   = "#ffffff"
+
+[hints]
+enabled = [
+  { regex = "(https?://|git@|git://)[^\\s<>\"'\\[\\]`]+", hyperlinks = true, command = "xdg-open", post_processing = true, mouse = { enabled = true } }
+]
