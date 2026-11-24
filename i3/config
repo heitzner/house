@@ -38,12 +38,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh
 exec --no-startup-id picom -b
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id nm-applet
-exec --no-startup-id GDK_BACKEND=x11 snixembed --fork
-exec --no-startup-id cachy-update --tray
+#exec --no-startup-id GDK_BACKEND=x11 snixembed --fork
 exec --no-startup-id copyq
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
-exec --no-startup-id nm-applet
 exec_always --no-startup-id autorandr --change
 
 # {application_system_keybinds}
@@ -59,6 +57,7 @@ bindsym control+space exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -p
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run -i
 bindsym $mod+Shift+p exec --no-startup-id autorandr --change
 bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/powermenu.sh
+bindsym $mod+Shift+u exec --no-startup-id ~/.config/i3/updates.sh notify
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec --no-startup-id wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
@@ -189,6 +188,8 @@ for_window [class="(?i)copyq"] floating enable, resize set 550 400, move positio
 for_window [floating] move position center
 for_window [class="^.*"] border pixel 3
 
+for_window [class="(?i)vlc"] floating enable, sticky enable resize set 625 500, move position 700 25
+
 # {border_colors}
 
 client.focused #ffffff #ffffff #ffffff #ffffff #ffffff
@@ -202,7 +203,7 @@ client.background #ffffff
 
 bar {
  font pango:Poppins Bold 12
- status_command i3status
+ status_command i3status | ~/.config/i3/status.sh
  position top
  workspace_buttons yes
  strip_workspace_numbers yes

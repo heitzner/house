@@ -1,5 +1,5 @@
 palette = "grey"
-format = """$username$hostname$directory$fill[$all](grey)$time$line_break$character"""
+format = """$username$hostname$directory$fill[$all](grey) $time$line_break$character"""
 
 [character]
 success_symbol = "[@](bold green)"
@@ -32,7 +32,7 @@ disabled = true
 
 [time]
 disabled = false
-time_format = "%F %T"
+time_format = "%H:%M"
 style = "#444444"
 format = '[$time]($style)'
 
