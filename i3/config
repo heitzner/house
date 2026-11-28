@@ -38,7 +38,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock.sh
 exec --no-startup-id picom -b
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id nm-applet
-#exec --no-startup-id GDK_BACKEND=x11 snixembed --fork
+exec --no-startup-id sh -c 'GDK_BACKEND=x11 snixembed --fork && cachy-update --tray'
 exec --no-startup-id copyq
 exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id dunst
